@@ -1,12 +1,18 @@
 import br.com.alura.alugames.modelo.Gamer
 import br.com.alura.alugames.modelo.Jogo
 import br.com.alura.alugames.servicos.ConsumoApi
-import java.lang.IllegalArgumentException
+import br.com.alura.alugames.utils.transformaEmIdade
 import java.util.Scanner
 
 fun main() {
     val scanner = Scanner(System.`in`)
+    println("Bem vindo ao AluGame...")
+
     val gamer = Gamer.criarGamer(scanner)
+
+    println(gamer)
+    println("Idade do gamer: ${gamer.dataNascimento?.transformaEmIdade()}" )
+
     do {
         println("Digite um código de jogo para buscar:")
         val leitura = scanner.nextLine()
@@ -34,6 +40,7 @@ fun main() {
 
             gamer.jogosBuscado.add(meuJogo)
         }
+
         println(meuJogo)
 
         println("Deseja buscar mais um jogo? S/N")

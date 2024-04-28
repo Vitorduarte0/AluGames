@@ -10,6 +10,9 @@ class HttpRequestUteis {
         val client = HttpClient.newHttpClient()
         val request = HttpRequest.newBuilder().uri(URI.create(endereco)).build()
         val response = client.send(request, HttpResponse.BodyHandlers.ofString())
+        if (response.statusCode() != 200) {
+            return error("Jogo esta quebrando")
+        }
         return response
     }
 }
