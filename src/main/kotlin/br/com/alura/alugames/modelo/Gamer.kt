@@ -1,5 +1,6 @@
 package br.com.alura.alugames.modelo
 
+import java.time.LocalDate
 import java.util.Scanner
 import kotlin.random.Random
 
@@ -22,6 +23,7 @@ data class Gamer(
         get
 
     val jogosBuscado = mutableListOf<Jogo?>()
+    val jogosAlugados = mutableListOf<Aluguel>()
     constructor(name: String, email: String, dataNascimento: String, usuario: String, idInterno: String? = null) :
             this(name, email) {
                 this.dataNascimento = dataNascimento
@@ -39,6 +41,21 @@ data class Gamer(
 
         this.idInterno = "$usuario#$tag"
 
+    }
+
+     fun alugaJogo(jogo: Jogo, periodo: Periodo): Aluguel {
+         val aluguel = Aluguel(this, jogo, periodo)
+         jogosAlugados.add(aluguel)
+
+         return aluguel
+    }
+
+    fun jogosAlugadosPorMes(data: LocalDate): List<Aluguel> {
+        val listasAlugadas = jogosAlugados.filter { aluguel ->
+            aluguel.periodo.dataInicial.month == data.month
+        }
+
+        return listasAlugadas
     }
 
     fun validaEmail(): String {
