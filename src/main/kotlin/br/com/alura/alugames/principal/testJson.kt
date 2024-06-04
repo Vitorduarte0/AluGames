@@ -1,6 +1,7 @@
 package br.com.alura.alugames.principal
 
 import br.com.alura.alugames.modelo.Periodo
+import br.com.alura.alugames.modelo.PlanoAssinatura
 import br.com.alura.alugames.servicos.ConsumoApi
 import java.time.LocalDate
 
@@ -11,10 +12,10 @@ fun main() {
 
     val gamerCaroline = gamers.get(3)
     val jogoResidentVillage = jogos.get(10)
-    val jogo1 = jogos.get(3)
-    val jogo2 = jogos.get(12)
-    val jogo3 = jogos.get(4)
-    val jogo4 = jogos.get(1)
+    val jogo1 = jogos[3]
+    val jogo2 = jogos[12]
+    val jogo3 = jogos[4]
+    val jogo4 = jogos[1]
 
     val periodoJuneInicial = LocalDate.of(2024, 6, 17)
     val periodoJune2Inicial = LocalDate.of(2024, 6, 12)
@@ -35,5 +36,13 @@ fun main() {
     gamerCaroline.alugaJogo(jogo4, periodo5)
 
     println(gamerCaroline.jogosAlugados)
-    println(gamerCaroline.jogosAlugadosPorMes(periodoJulyInicial))
+    println(gamerCaroline.jogosAlugadosPorMes(7))
+
+    val gamerVitin = gamers[2]
+    gamerVitin.plano = PlanoAssinatura("PRATA", 9.9, 3)
+    gamerVitin.alugaJogo(jogo1, periodo)
+    gamerVitin.alugaJogo(jogo2, periodo2)
+    gamerVitin.alugaJogo(jogo3, periodo3)
+    gamerVitin.alugaJogo(jogo4, periodo4)
+    println(gamerVitin.jogosAlugados)
 }

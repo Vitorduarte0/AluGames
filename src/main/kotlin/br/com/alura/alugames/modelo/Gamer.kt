@@ -22,6 +22,7 @@ data class Gamer(
     var idInterno: String? = null
         get
 
+    var plano: Plano = PlanoAvulso("BRONZE")
     val jogosBuscado = mutableListOf<Jogo?>()
     val jogosAlugados = mutableListOf<Aluguel>()
     constructor(name: String, email: String, dataNascimento: String, usuario: String, idInterno: String? = null) :
@@ -50,9 +51,9 @@ data class Gamer(
          return aluguel
     }
 
-    fun jogosAlugadosPorMes(data: LocalDate): List<Aluguel> {
+    fun jogosAlugadosPorMes(mes: Int): List<Aluguel> {
         val listasAlugadas = jogosAlugados.filter { aluguel ->
-            aluguel.periodo.dataInicial.month == data.month
+            aluguel.periodo.dataInicial.monthValue == mes
         }
 
         return listasAlugadas
