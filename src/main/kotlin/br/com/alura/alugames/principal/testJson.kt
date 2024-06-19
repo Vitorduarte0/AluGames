@@ -39,10 +39,15 @@ fun main() {
     println(gamerCaroline.jogosAlugadosPorMes(7))
 
     val gamerVitin = gamers[2]
-    gamerVitin.plano = PlanoAssinatura("PRATA", 9.9, 3)
+//    gamerVitin.plano = PlanoAssinatura("PRATA", 9.9, 3)
     gamerVitin.alugaJogo(jogo1, periodo)
     gamerVitin.alugaJogo(jogo2, periodo2)
     gamerVitin.alugaJogo(jogo3, periodo3)
     gamerVitin.alugaJogo(jogo4, periodo4)
+    println(gamerVitin.jogosAlugados)
+    gamerVitin.recomendar(7)
+    gamerVitin.recomendar(8)
+    gamerVitin.recomendar(10)
+    gamerVitin.alugaJogo(jogoResidentVillage, periodo)
     println(gamerVitin.jogosAlugados)
 }
