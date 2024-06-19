@@ -1,12 +1,11 @@
 package br.com.alura.alugames.modelo
 
-import java.time.LocalDate
 import java.util.Scanner
 import kotlin.random.Random
 
 data class Gamer(
     var name: String, var email: String
-){
+): IRecomenda{
     var dataNascimento: String? = null
         set(value) {
             field = value
@@ -25,6 +24,18 @@ data class Gamer(
     var plano: Plano = PlanoAvulso("BRONZE")
     val jogosBuscado = mutableListOf<Jogo?>()
     val jogosAlugados = mutableListOf<Aluguel>()
+    private val listaNotas = mutableListOf<Int>()
+    override val media: Double
+        get() = listaNotas.average()
+
+    override fun recomendar(nota: Int) {
+        if (nota in 1 .. 10) {
+            listaNotas.add(nota)
+        } else {
+            throw RuntimeException("Nota inválida! Por favor preencha uma nota entre 1 a 10")
+        }
+    }
+
     constructor(name: String, email: String, dataNascimento: String, usuario: String, idInterno: String? = null) :
             this(name, email) {
                 this.dataNascimento = dataNascimento
@@ -33,7 +44,12 @@ data class Gamer(
             }
 
     override fun toString(): String {
-        return "Gamer(name='$name', email='$email', dataNascimento=$dataNascimento, usuario=$usuario, idInterno=$idInterno)"
+        return "Gamer(name='$name', " +
+                " email='$email', " +
+                " dataNascimento=$dataNascimento, " +
+                " usuario=$usuario, " +
+                "idInterno=$idInterno), " +
+                "media=$media"
     }
 
     private fun createIdInterno() {
