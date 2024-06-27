@@ -1,13 +1,15 @@
 package br.com.alura.alugames.modelo
 
 import com.google.gson.annotations.Expose
+import java.math.BigDecimal
+import java.math.MathContext
 
 data class Jogo (@Expose val titulo: String, @Expose val capa: String): IRecomenda{
     var descricao: String? = null
     var preco: Double = 0.0
     private val listaNotaJogo = mutableListOf<Int>()
-    override val media: Double
-        get() = listaNotaJogo.average()
+    override val media: BigDecimal
+        get() = listaNotaJogo.average().toBigDecimal().round(MathContext(3))
 
     override fun recomendar(nota: Int) {
         listaNotaJogo.add(nota)
@@ -22,8 +24,8 @@ data class Jogo (@Expose val titulo: String, @Expose val capa: String): IRecomen
         return "Meu jogo: \n" +
                 "Titulo: $titulo \n" +
                 "Capa:$capa \n" +
-                "Preco:${String.format("%.2f", preco)} \n" +
-                "Reputação:${String.format("%.2f", media )} \n" +
+                "Preco:$preco \n" +
+                "Reputação:$media \n" +
                 "Descricao:$descricao"
     }
 }

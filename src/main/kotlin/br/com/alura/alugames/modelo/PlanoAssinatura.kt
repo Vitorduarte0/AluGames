@@ -12,7 +12,7 @@ class PlanoAssinatura (
             0.0
         }else {
             var valorOrigial = super.obterValor(aluguel)
-            if(aluguel.gamer.media > 8) {
+            if(aluguel.gamer.media.intValueExact() > 8) {
                 valorOrigial -= valorOrigial * 0.15
             }
 
