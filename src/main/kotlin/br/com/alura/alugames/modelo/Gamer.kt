@@ -22,14 +22,14 @@ data class Gamer(
         }
     var idInterno: String? = null
         get
-
+    var id = 0
     var plano: Plano = PlanoAvulso("BRONZE")
     val jogosBuscado = mutableListOf<Jogo?>()
     val jogosAlugados = mutableListOf<Aluguel>()
     val jogosRecomendados = mutableListOf<Jogo>()
     private val listaNotas = mutableListOf<Int>()
-    override val media: BigDecimal
-        get() = listaNotas.average().toBigDecimal().round(MathContext(3))
+    override val media: Double
+        get() = listaNotas.average()
 
     override fun recomendar(nota: Int) {
         if (nota in 1 .. 10) {
@@ -44,10 +44,11 @@ data class Gamer(
         jogosRecomendados.add(jogo)
     }
 
-    constructor(name: String, email: String, dataNascimento: String, usuario: String, idInterno: String? = null) :
+    constructor(name: String, email: String, dataNascimento: String, usuario: String, idInterno: String? = null, id: Int = 0) :
             this(name, email) {
                 this.dataNascimento = dataNascimento
                 this.usuario = usuario
+                this.id = id
                 createIdInterno()
             }
 

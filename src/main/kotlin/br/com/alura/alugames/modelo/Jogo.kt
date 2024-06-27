@@ -5,19 +5,21 @@ import java.math.BigDecimal
 import java.math.MathContext
 
 data class Jogo (@Expose val titulo: String, @Expose val capa: String): IRecomenda{
+    var id = 0
     var descricao: String? = null
     var preco: Double = 0.0
     private val listaNotaJogo = mutableListOf<Int>()
-    override val media: BigDecimal
-        get() = listaNotaJogo.average().toBigDecimal().round(MathContext(3))
+    override val media: Double
+        get() = listaNotaJogo.average()
 
     override fun recomendar(nota: Int) {
         listaNotaJogo.add(nota)
     }
 
-    constructor(titulo: String, capa: String, descricao: String, preco: Double): this(titulo, capa) {
+    constructor(titulo: String, capa: String, descricao: String, preco: Double, id: Int = 0): this(titulo, capa) {
         this.descricao = descricao
         this.preco = preco
+        this.id = id
     }
 
     override fun toString(): String {
@@ -26,7 +28,8 @@ data class Jogo (@Expose val titulo: String, @Expose val capa: String): IRecomen
                 "Capa:$capa \n" +
                 "Preco:$preco \n" +
                 "Reputação:$media \n" +
-                "Descricao:$descricao"
+                "Descricao:$descricao \n" +
+                "id:$id"
     }
 }
 
