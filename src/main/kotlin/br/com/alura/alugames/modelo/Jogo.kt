@@ -1,6 +1,8 @@
 package br.com.alura.alugames.modelo
 
-data class Jogo (val titulo: String, val capa: String): IRecomenda{
+import com.google.gson.annotations.Expose
+
+data class Jogo (@Expose val titulo: String, @Expose val capa: String): IRecomenda{
     var descricao: String? = null
     var preco: Double = 0.0
     private val listaNotaJogo = mutableListOf<Int>()
@@ -20,7 +22,8 @@ data class Jogo (val titulo: String, val capa: String): IRecomenda{
         return "Meu jogo: \n" +
                 "Titulo: $titulo \n" +
                 "Capa:$capa \n" +
-                "Preco:$preco \n" +
+                "Preco:${String.format("%.2f", preco)} \n" +
+                "Reputação:${String.format("%.2f", media )} \n" +
                 "Descricao:$descricao"
     }
 }

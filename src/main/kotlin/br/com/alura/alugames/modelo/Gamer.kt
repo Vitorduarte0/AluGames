@@ -24,6 +24,7 @@ data class Gamer(
     var plano: Plano = PlanoAvulso("BRONZE")
     val jogosBuscado = mutableListOf<Jogo?>()
     val jogosAlugados = mutableListOf<Aluguel>()
+    val jogosRecomendados = mutableListOf<Jogo>()
     private val listaNotas = mutableListOf<Int>()
     override val media: Double
         get() = listaNotas.average()
@@ -36,6 +37,11 @@ data class Gamer(
         }
     }
 
+    fun recomendarJogo(jogo: Jogo, nota: Int) {
+        jogo.recomendar(nota)
+        jogosRecomendados.add(jogo)
+    }
+
     constructor(name: String, email: String, dataNascimento: String, usuario: String, idInterno: String? = null) :
             this(name, email) {
                 this.dataNascimento = dataNascimento
@@ -44,12 +50,12 @@ data class Gamer(
             }
 
     override fun toString(): String {
-        return "Gamer(name='$name', " +
-                " email='$email', " +
-                " dataNascimento=$dataNascimento, " +
-                " usuario=$usuario, " +
-                "idInterno=$idInterno), " +
-                "media=$media"
+        return "Gamer='$name', \n" +
+                "email='$email', \n" +
+                "dataNascimento=$dataNascimento, \n" +
+                "usuario=$usuario, \n" +
+                "idInterno=$idInterno, \n" +
+                "media=${String.format("%.2f", media)}"
     }
 
     private fun createIdInterno() {
