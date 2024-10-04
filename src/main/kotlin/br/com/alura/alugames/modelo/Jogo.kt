@@ -16,7 +16,7 @@ data class Jogo (@Expose val titulo: String, @Expose val capa: String): IRecomen
         listaNotaJogo.add(nota)
     }
 
-    constructor(titulo: String, capa: String, descricao: String, preco: Double, id: Int = 0): this(titulo, capa) {
+    constructor(titulo: String, capa: String, descricao: String?, preco: Double, id: Int = 0): this(titulo, capa) {
         this.descricao = descricao
         this.preco = preco
         this.id = id

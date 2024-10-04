@@ -1,7 +1,5 @@
 package br.com.alura.alugames.modelo
 
-import java.math.BigDecimal
-import java.math.MathContext
 import java.util.Scanner
 import kotlin.random.Random
 
@@ -44,7 +42,7 @@ data class Gamer(
         jogosRecomendados.add(jogo)
     }
 
-    constructor(name: String, email: String, dataNascimento: String, usuario: String, idInterno: String? = null, id: Int = 0) :
+    constructor(name: String, email: String, dataNascimento: String?, usuario: String?, idInterno: String? = null, id: Int = 0) :
             this(name, email) {
                 this.dataNascimento = dataNascimento
                 this.usuario = usuario
